@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum - lightweight Fujicoin client
 # Copyright (C) 2012 thomasv@gitorious
 #
 # Permission is hereby granted, free of charge, to any person
@@ -129,7 +129,7 @@ class PayToEdit(CompletionTextEdit, ScanQRTextEdit, Logger):
         self.payto_address = None
         if len(lines) == 1:
             data = lines[0]
-            if data.startswith("bitcoin:"):
+            if data.startswith("fujicoin:"):
                 self.scan_f(data)
                 return
             try:
@@ -203,7 +203,7 @@ class PayToEdit(CompletionTextEdit, ScanQRTextEdit, Logger):
 
     def qr_input(self):
         data = super(PayToEdit,self).qr_input()
-        if data.startswith("bitcoin:"):
+        if data.startswith("fujicoin:"):
             self.scan_f(data)
             # TODO: update fee
 

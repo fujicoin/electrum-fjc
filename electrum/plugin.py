@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum - lightweight Fujicoin client
 # Copyright (C) 2015 Thomas Voegtlin
 #
 # Permission is hereby granted, free of charge, to any person
@@ -496,9 +496,9 @@ class DeviceMgr(ThreadJob):
         # or it is not pairable
         raise DeviceUnpairableError(
             _('Electrum cannot pair with your {}.\n\n'
-              'Before you request bitcoins to be sent to addresses in this '
+              'Before you request fujicoins to be sent to addresses in this '
               'wallet, ensure you can pair with your device, or that you have '
-              'its seed (and passphrase, if any).  Otherwise all bitcoins you '
+              'its seed (and passphrase, if any).  Otherwise all fujicoins you '
               'receive will be unspendable.').format(plugin.device))
 
     def unpaired_device_infos(self, handler, plugin: 'HW_PluginBase', devices=None,

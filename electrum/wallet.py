@@ -1,4 +1,4 @@
-# Electrum - lightweight Bitcoin client
+# Electrum - lightweight Fujicoin client
 # Copyright (C) 2015 Thomas Voegtlin
 #
 # Permission is hereby granted, free of charge, to any person
@@ -270,7 +270,7 @@ class Abstract_Wallet(AddressSynchronizer):
             addr = str(addrs[0])
             if not bitcoin.is_address(addr):
                 neutered_addr = addr[:5] + '..' + addr[-2:]
-                raise WalletFileException(f'The addresses in this wallet are not bitcoin addresses.\n'
+                raise WalletFileException(f'The addresses in this wallet are not fujicoin addresses.\n'
                                           f'e.g. {neutered_addr} (length: {len(addr)})')
 
     def calc_unused_change_addresses(self):
@@ -360,7 +360,7 @@ class Abstract_Wallet(AddressSynchronizer):
         if self.is_watching_only():
             raise Exception(_("This is a watching-only wallet"))
         if not is_address(address):
-            raise Exception(f"Invalid bitcoin address: {address}")
+            raise Exception(f"Invalid fujicoin address: {address}")
         if not self.is_mine(address):
             raise Exception(_('Address not in wallet.') + f' {address}')
         index = self.get_address_index(address)
@@ -714,7 +714,7 @@ class Abstract_Wallet(AddressSynchronizer):
                 addrs = self.get_change_addresses(slice_start=-self.gap_limit_for_change)
                 change_addrs = [random.choice(addrs)] if addrs else []
         for addr in change_addrs:
-            assert is_address(addr), f"not valid bitcoin address: {addr}"
+            assert is_address(addr), f"not valid fujicoin address: {addr}"
             # note that change addresses are not necessarily ismine
             # in which case this is a no-op
             self.check_address(addr)
@@ -728,7 +728,7 @@ class Abstract_Wallet(AddressSynchronizer):
         for i, o in enumerate(outputs):
             if o.type == TYPE_ADDRESS:
                 if not is_address(o.address):
-                    raise Exception("Invalid bitcoin address: {}".format(o.address))
+                    raise Exception("Invalid fujicoin address: {}".format(o.address))
             if o.value == '!':
                 if i_max is not None:
                     raise Exception("More than one output set to spend max")
@@ -1179,7 +1179,7 @@ class Abstract_Wallet(AddressSynchronizer):
         if not r:
             return
         out = copy.copy(r)
-        out['URI'] = 'bitcoin:' + addr + '?amount=' + format_satoshis(out.get('amount'))
+        out['URI'] = 'fujicoin:' + addr + '?amount=' + format_satoshis(out.get('amount'))
         status, conf = self.get_request_status(addr)
         out['status'] = status
         if conf is not None:
@@ -1256,7 +1256,7 @@ class Abstract_Wallet(AddressSynchronizer):
     def add_payment_request(self, req, config):
         addr = req['address']
         if not bitcoin.is_address(addr):
-            raise Exception(_('Invalid Bitcoin address.'))
+            raise Exception(_('Invalid Fujicoin address.'))
         if not self.is_mine(addr):
             raise Exception(_('Address not in wallet.'))
 
@@ -1397,7 +1397,7 @@ class Abstract_Wallet(AddressSynchronizer):
         return None
 
     def price_at_timestamp(self, txid, price_func):
-        """Returns fiat price of bitcoin at the time tx got confirmed."""
+        """Returns fiat price of fujicoin at the time tx got confirmed."""
         timestamp = self.get_tx_height(txid).timestamp
         return price_func(timestamp if timestamp else time.time())
 

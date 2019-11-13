@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME_ROOT=electrum
+NAME_ROOT=electrum-FJC
 
 # These settings probably don't need any change
 export WINEPREFIX=/opt/wine64
@@ -21,7 +21,7 @@ here="$(dirname "$(readlink -e "$0")")"
 
 pushd $WINEPREFIX/drive_c/electrum
 
-VERSION=`git describe --tags --dirty --always`
+VERSION="3.3.8"
 info "Last commit: $VERSION"
 
 # Load electrum-locale for this release
@@ -69,9 +69,9 @@ info "building NSIS installer"
 # $VERSION could be passed to the electrum.nsi script, but this would require some rewriting in the script itself.
 wine "$WINEPREFIX/drive_c/Program Files (x86)/NSIS/makensis.exe" /DPRODUCT_VERSION=$VERSION electrum.nsi
 
-cd dist
-mv electrum-setup.exe $NAME_ROOT-$VERSION-setup.exe
-cd ..
+#cd dist
+#mv electrum-setup.exe $NAME_ROOT-$VERSION-setup.exe
+#cd ..
 
 info "Padding binaries to 8-byte boundaries, and fixing COFF image checksum in PE header"
 # note: 8-byte boundary padding is what osslsigncode uses:

@@ -1,4 +1,4 @@
-# Electrum - lightweight Bitcoin client
+# Electrum - lightweight Fujicoin client
 # Copyright (C) 2012 thomasv@ecdsa.org
 #
 # Permission is hereby granted, free of charge, to any person
@@ -506,7 +506,7 @@ class Blockchain(Logger):
         bits = last.get('bits')
         target = self.bits_to_target(bits)
         nActualTimespan = last.get('timestamp') - first.get('timestamp')
-        nTargetTimespan = 14 * 24 * 60 * 60
+        nTargetTimespan = 1.4 * 24 * 60 * 60
         nActualTimespan = max(nActualTimespan, nTargetTimespan // 4)
         nActualTimespan = min(nActualTimespan, nTargetTimespan * 4)
         new_target = min(MAX_TARGET, (target * nActualTimespan) // nTargetTimespan)
@@ -583,21 +583,21 @@ class Blockchain(Logger):
             return False
         if prev_hash != header.get('prev_block_hash'):
             return False
-        try:
-            target = self.get_target(height // 2016 - 1)
-        except MissingHeader:
-            return False
-        try:
-            self.verify_header(header, prev_hash, target)
-        except BaseException as e:
-            return False
+        #try:
+        #    target = self.get_target(height // 2016 - 1)
+        #except MissingHeader:
+        #    return False
+        #try:
+        #    self.verify_header(header, prev_hash, target)
+        #except BaseException as e:
+        #    return False
         return True
 
     def connect_chunk(self, idx: int, hexdata: str) -> bool:
         assert idx >= 0, idx
         try:
             data = bfh(hexdata)
-            self.verify_chunk(idx, data)
+            #self.verify_chunk(idx, data)
             self.save_chunk(idx, data)
             return True
         except BaseException as e:
@@ -610,7 +610,8 @@ class Blockchain(Logger):
         n = self.height() // 2016
         for index in range(n):
             h = self.get_hash((index+1) * 2016 -1)
-            target = self.get_target(index)
+            #target = self.get_target(index)
+            target = 0
             cp.append((h, target))
         return cp
 

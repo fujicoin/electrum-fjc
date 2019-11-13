@@ -19,11 +19,11 @@ from electrum.logging import Logger
 
 
 class UpdateCheck(QWidget, Logger):
-    url = "https://electrum.org/version"
-    download_url = "https://electrum.org/#download"
+    url = "https://electrum.fujicoin.org/version"
+    download_url = "https://www.fujicoin.org/downloads.php"
 
     VERSION_ANNOUNCEMENT_SIGNING_KEYS = (
-        "13xjmVAB1EATPP8RshTE8S8sNwwSUM9p1P",
+        "FtCEpk3TsW6vrJd1ZTFKmR6zxD8smZWigp",
     )
 
     def __init__(self, main_window, latest_version=None):

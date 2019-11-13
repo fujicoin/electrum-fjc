@@ -88,6 +88,18 @@
    can consider not "spoofing" to be Electrum. (#5246)
  * Several other minor bugfixes and usability improvements.
 
+# Release 3.3.4.2 - (May 19, 2019)
+
+ * Minimum transaction fee was changed from 0.001 to 0.1 FJC/kB.
+
+# Release 3.3.4.1 - (February 22, 2019)
+
+ * CoinGecko was added to the source of Fiat currency, and it became the
+   default. Available currency units are as follows.
+   AED,ARS,AUD,BCH,BDT,BHD,BMD,BNB,BRL,BTC,CAD,CHF,CLP,CNY,CZK,DKK,EOS,
+   ETH,EUR,GBP,HKD,HUF,IDR,ILS,INR,JPY,KRW,KWD,LKR,LTC,MMK,MXN,MYR,NOK,
+   NZD,PHP,PKR,PLN,RUB,SAR,SEK,SGD,THB,TRY,TWD,USD,VEF,XAG,XAU,XDR,XLM,
+   XRP,ZAR
 
 # Release 3.3.4 - (February 13, 2019)
 

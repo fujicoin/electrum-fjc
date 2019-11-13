@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Electrum - lightweight Bitcoin client
+# Electrum - lightweight Fujicoin client
 # Copyright (C) 2016 Thomas Voegtlin
 #
 # Permission is hereby granted, free of charge, to any person
@@ -131,7 +131,7 @@ class BaseWizard(Logger):
             ('standard',  _("Standard wallet")),
             ('2fa', _("Wallet with two-factor authentication")),
             ('multisig',  _("Multi-signature wallet")),
-            ('imported',  _("Import Bitcoin addresses or private keys")),
+            ('imported',  _("Import Fujicoin addresses or private keys")),
         ]
         choices = [pair for pair in wallet_kinds if pair[0] in wallet_types]
         self.choice_dialog(title=title, message=message, choices=choices, run_next=self.on_wallet_type)
@@ -202,9 +202,9 @@ class BaseWizard(Logger):
         self.choice_dialog(title=title, message=message, choices=choices, run_next=self.run)
 
     def import_addresses_or_keys(self):
-        v = lambda x: keystore.is_address_list(x) or keystore.is_private_key_list(x, raise_on_error=True)
-        title = _("Import Bitcoin Addresses")
-        message = _("Enter a list of Bitcoin addresses (this will create a watching-only wallet), or a list of private keys.")
+        v = lambda x: keystore.is_address_list(x) or keystore.is_private_key_list(x)
+        title = _("Import Fujicoin Addresses")
+        message = _("Enter a list of Fujicoin addresses (this will create a watching-only wallet), or a list of private keys.")
         self.add_xpub_dialog(title=title, message=message, run_next=self.on_import,
                              is_valid=v, allow_multi=True, show_wif_help=True)
 
@@ -603,7 +603,7 @@ class BaseWizard(Logger):
                 _("The type of addresses used by your wallet will depend on your seed."),
                 _("Segwit wallets use bech32 addresses, defined in BIP173."),
                 _("Please note that websites and other wallets may not support these addresses yet."),
-                _("Thus, you might want to keep using a non-segwit wallet in order to be able to receive bitcoins during the transition period.")
+                _("Thus, you might want to keep using a non-segwit wallet in order to be able to receive fujicoins during the transition period.")
             ])
         if choices is None:
             choices = [

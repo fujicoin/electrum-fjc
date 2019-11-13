@@ -1,4 +1,4 @@
-Electrum - Lightweight Bitcoin client
+Electrum - Lightweight Fujicoin client
 =====================================
 
 ::
@@ -59,7 +59,7 @@ Development version
 
 Check out the code from GitHub::
 
-    git clone git://github.com/spesmilo/electrum.git
+    git clone git://github.com/fujicoin/electrum-fjc.git
     cd electrum
 
 Run install (this should install dependencies)::

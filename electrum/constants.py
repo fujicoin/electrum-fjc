@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Electrum - lightweight Bitcoin client
+# Electrum - lightweight Fujicoin client
 # Copyright (C) 2018 The Electrum developers
 #
 # Permission is hereby granted, free of charge, to any person
@@ -53,11 +53,11 @@ class AbstractNet:
 class BitcoinMainnet(AbstractNet):
 
     TESTNET = False
-    WIF_PREFIX = 0x80
-    ADDRTYPE_P2PKH = 0
-    ADDRTYPE_P2SH = 5
-    SEGWIT_HRP = "bc"
-    GENESIS = "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"
+    WIF_PREFIX = 164
+    ADDRTYPE_P2PKH = 36
+    ADDRTYPE_P2SH = 16
+    SEGWIT_HRP = "fc"
+    GENESIS = "adb6d9cfd74075e7f91608add4bd2a2ea636f70856183086842667a1597714a0"
     DEFAULT_PORTS = {'t': '50001', 's': '50002'}
     DEFAULT_SERVERS = read_json('servers.json', {})
     CHECKPOINTS = read_json('checkpoints.json', [])
@@ -78,7 +78,7 @@ class BitcoinMainnet(AbstractNet):
         'p2wsh':       0x02aa7ed3,  # Zpub
     }
     XPUB_HEADERS_INV = inv_dict(XPUB_HEADERS)
-    BIP44_COIN_TYPE = 0
+    BIP44_COIN_TYPE = 75
 
 
 class BitcoinTestnet(AbstractNet):
