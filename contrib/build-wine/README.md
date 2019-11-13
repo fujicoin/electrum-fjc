@@ -20,6 +20,8 @@ folder.
 2. Build image
 
     ```
+    $ git clone https://github.com/fujicoin/electrum-fjc.git
+    $ cd electrum-fjc
     $ sudo docker build -t electrum-wine-builder-img contrib/build-wine
     ```
 
@@ -35,13 +37,13 @@ folder.
         sudo rm -rf $FRESH_CLONE && \
         mkdir -p $FRESH_CLONE && \
         cd $FRESH_CLONE  && \
-        git clone https://github.com/fujicoin/electrum-fjc.git && \
+        git clone https://github.com/fujicoin/electrum-fjc.git electrum && \
         cd electrum
     ```
 
     And then build from this directory:
     ```
-    $ git checkout $REV
+    $ git checkout 3.3.8
     $ sudo docker run -it \
         --name electrum-wine-builder-cont \
         -v $PWD:/opt/wine64/drive_c/electrum \
