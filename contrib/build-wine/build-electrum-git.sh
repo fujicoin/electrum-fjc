@@ -21,7 +21,7 @@ here="$(dirname "$(readlink -e "$0")")"
 
 pushd $WINEPREFIX/drive_c/electrum
 
-VERSION="3.3.8"
+VERSION="3.3.9"
 info "Last commit: $VERSION"
 
 # Load electrum-locale for this release

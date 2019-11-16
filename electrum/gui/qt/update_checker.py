@@ -23,7 +23,7 @@ class UpdateCheck(QWidget, Logger):
     download_url = "https://www.fujicoin.org/downloads.php"
 
     VERSION_ANNOUNCEMENT_SIGNING_KEYS = (
-        "FtCEpk3TsW6vrJd1ZTFKmR6zxD8smZWigp",
+        "Fk21aH8Xjd3V3cP6Fw3qMGSmfEQtztLNns",
     )
 
     def __init__(self, main_window, latest_version=None):

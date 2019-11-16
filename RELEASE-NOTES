@@ -1,3 +1,8 @@
+# Release 3.3.9 - (November 16, 2019)
+
+ * fix synchronization instability.
+
+
 # Release 3.3.8 - (July 11, 2019)
 
  * fix some bugs with recent bump fee (RBF) improvements (#5483, #5502)

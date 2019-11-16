@@ -43,7 +43,7 @@ folder.
 
     And then build from this directory:
     ```
-    $ git checkout 3.3.8
+    $ git checkout 3.3.9
     $ sudo docker run -it \
         --name electrum-wine-builder-cont \
         -v $PWD:/opt/wine64/drive_c/electrum \

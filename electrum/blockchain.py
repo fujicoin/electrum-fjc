@@ -287,6 +287,9 @@ class Blockchain(Logger):
             raise Exception("hash mismatches with expected: {} vs {}".format(expected_header_hash, _hash))
         if prev_hash != header.get('prev_block_hash'):
             raise Exception("prev hash mismatch: %s vs %s" % (prev_hash, header.get('prev_block_hash')))
+        # fujicoin do not check bits and target
+        return
+    
         if constants.net.TESTNET:
             return
         bits = cls.target_to_bits(target)
@@ -490,6 +493,9 @@ class Blockchain(Logger):
             return hash_header(header)
 
     def get_target(self, index: int) -> int:
+        # fujicoin do not check target
+        return 0
+    
         # compute target from chunk x, used in chunk x+1
         if constants.net.TESTNET:
             return 0
@@ -546,6 +552,9 @@ class Blockchain(Logger):
     def get_chainwork(self, height=None) -> int:
         if height is None:
             height = max(0, self.height())
+        # fujicoin do not check chainwork
+        return height
+    
         if constants.net.TESTNET:
             # On testnet/regtest, difficulty works somewhat different.
             # It's out of scope to properly implement that.
@@ -583,21 +592,21 @@ class Blockchain(Logger):
             return False
         if prev_hash != header.get('prev_block_hash'):
             return False
-        #try:
-        #    target = self.get_target(height // 2016 - 1)
-        #except MissingHeader:
-        #    return False
-        #try:
-        #    self.verify_header(header, prev_hash, target)
-        #except BaseException as e:
-        #    return False
+        try:
+            target = self.get_target(height // 2016 - 1)
+        except MissingHeader:
+            return False
+        try:
+            self.verify_header(header, prev_hash, target)
+        except BaseException as e:
+            return False
         return True
 
     def connect_chunk(self, idx: int, hexdata: str) -> bool:
         assert idx >= 0, idx
         try:
             data = bfh(hexdata)
-            #self.verify_chunk(idx, data)
+            self.verify_chunk(idx, data)
             self.save_chunk(idx, data)
             return True
         except BaseException as e:
@@ -610,8 +619,7 @@ class Blockchain(Logger):
         n = self.height() // 2016
         for index in range(n):
             h = self.get_hash((index+1) * 2016 -1)
-            #target = self.get_target(index)
-            target = 0
+            target = self.get_target(index)
             cp.append((h, target))
         return cp
 
